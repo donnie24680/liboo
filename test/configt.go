@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	// "testing"
-	. "github.com/HepuMax/liboo"
+	. "github.com/donnie24680/liboo"
 )
 
 func main() {

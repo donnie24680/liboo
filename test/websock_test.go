@@ -1,7 +1,7 @@
 package oo
 
 import (
-	. "github.com/HepuMax/liboo"
+	. "github.com/donnie24680/liboo"
 	"math/rand"
 	"net/url"
 	"strings"
