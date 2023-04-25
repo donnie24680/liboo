@@ -39,7 +39,7 @@ func InitMysqlPool(Host string, Port int32, UserName string, Password string, Da
 	return InitMysqlPool2(&cfg, Database)
 }
 func InitMysqlPool2(cfg *MysqlCfg, Database string) (p *MysqlPool, e error) {
-	mysqlCfg := mysql.Config{Net: "tcp", Addr: "127.0.0.1:3306", DBName: "dbname", Collation: "utf8_general_ci", Loc: time.UTC}
+	mysqlCfg := mysql.Config{Net: "tcp", Addr: "127.0.0.1:3306", DBName: "dbname", Collation: "utf8mb4_general_ci", Loc: time.UTC}
 	Port := cfg.Port
 	if Port == 0 {
 		Port = 3306
