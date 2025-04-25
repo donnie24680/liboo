@@ -62,7 +62,7 @@ func JoinArray(arr interface{}, sep string) string {
 	return s
 }
 
-//通用转换为数组
+// 通用转换为数组
 func ToSlice(arr interface{}) ([]interface{}, bool) {
 	v := reflect.ValueOf(arr)
 	if v.Kind() != reflect.Slice {
@@ -94,6 +94,15 @@ func InArray(needle interface{}, hystack interface{}) bool {
 	return false
 }
 
+func InArrayStr(item string, array []string) bool {
+	for _, v := range array {
+		if strings.EqualFold(v, item) {
+			return true
+		}
+	}
+	return false
+}
+
 func ToStr(data interface{}) string {
 	return fmt.Sprint(data)
 }
@@ -110,7 +119,7 @@ func If(condition bool, trueVal, falseVal interface{}) interface{} {
 	return falseVal
 }
 
-//为了链式表达，以及不再次引入jsoniter库
+// 为了链式表达，以及不再次引入jsoniter库
 func JsonData(reqjson interface{}) []byte {
 	if reqjson == nil {
 		return []byte("")
@@ -208,16 +217,17 @@ func Str2Int(str string) (i64 int64) {
 }
 
 /*
-type SliceHeader struct {
-	Data uintptr
-	Len  int
-	Cap  int   //只差了容量这个字段
-  }
-type StringHeader struct {
-	Data uintptr
-	Len  int
-  }
- 注意：转换的话不安全，要特别留意上尽是否gc
+	type SliceHeader struct {
+		Data uintptr
+		Len  int
+		Cap  int   //只差了容量这个字段
+	  }
+
+	type StringHeader struct {
+		Data uintptr
+		Len  int
+	  }
+	 注意：转换的话不安全，要特别留意上尽是否gc
 */
 func Str2Bytes(s string) []byte {
 	x := (*[2]uintptr)(unsafe.Pointer(&s))
@@ -255,8 +265,8 @@ func GetTagOptions(tag reflect.StructTag, tagname string) TagOptions {
 	return opts
 }
 
-//映射函数：首字母转小写，大写转成下划线加小写
-//反向则是：首字母大写，下划线去掉，其后字母转大写
+// 映射函数：首字母转小写，大写转成下划线加小写
+// 反向则是：首字母大写，下划线去掉，其后字母转大写
 func LowerCaseWithUnderscores(name string) string {
 	newName := []rune{}
 	for i, c := range name {
@@ -330,14 +340,14 @@ func randStr(size int, kind int) []byte {
 	return result
 }
 
-//整形转换成字节
+// 整形转换成字节
 func IntToBytes(num interface{}) []byte {
 	bytesBuffer := bytes.NewBuffer([]byte{})
 	binary.Write(bytesBuffer, binary.BigEndian, num)
 	return bytesBuffer.Bytes()
 }
 
-//字节转换成整形
+// 字节转换成整形
 func BytesToInt(buf []byte) int64 {
 	bytesBuffer := bytes.NewBuffer(buf)
 	var num int64

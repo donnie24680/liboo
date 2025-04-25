@@ -55,8 +55,8 @@ func InitMysqlPool2(cfg *MysqlCfg, Database string) (p *MysqlPool, e error) {
 	if err != nil {
 		return nil, err
 	}
-	//G_MysqlDB.SetMaxOpenConns(2000)
-	//G_MysqlDB.SetMaxIdleConns(1000)
+	//db.SetMaxOpenConns(2000)
+	//db.SetMaxIdleConns(1000)
 	db.Ping()
 	// GMysqlDB = db
 	// GMysqlDB.Ping()
@@ -193,7 +193,7 @@ func (p *MysqlPool) SingleGetVal(p_val interface{}, sqlstr string) error {
 	return p.dbx.Get(p_val, sqlstr)
 }
 
-//for get sum/count/id etc.
+// for get sum/count/id etc.
 func (p *MysqlPool) SingleGetInt64(sqlstr string) (v int64, err error) {
 	err = p.dbx.Get(&v, sqlstr)
 	return
